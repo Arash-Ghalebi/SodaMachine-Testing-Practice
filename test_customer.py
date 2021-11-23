@@ -38,12 +38,7 @@ class TestAddCoinsToWallet(unittest.TestCase):
         
         
     def test_add_coins(self):
-        coins_list = ["Quarter", "Dime", "Nickel"]
-        for coin in coins_list:
-            try:
-                self.customer.wallet.money.append(coin)
-            except:
-                pass
+        self.customer.add_coins_to_wallet
         print(self.customer.wallet.money)
 
 if __name__ == "__main__":
