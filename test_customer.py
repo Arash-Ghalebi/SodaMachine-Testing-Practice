@@ -30,8 +30,6 @@ class TestGetWalletCoin(unittest.TestCase):
         returned_coin = self.customer.get_wallet_coin("Penny")
         self.assertIsInstance(returned_coin, coins.Penny)
         
-        
-#^ Tests whether the length of the coin list increases when coins are appended 
 
 class TestAddCoinsToWallet(unittest.TestCase):
     
@@ -39,12 +37,10 @@ class TestAddCoinsToWallet(unittest.TestCase):
         self.customer = customer.Customer()
                 
     def test_add_coins(self):
-        
+        """Tests whether the length of the coin list increases when coins are appended """
         this_coin_list = [coins.Quarter(), coins.Nickel(), coins.Penny()]
         self.customer.add_coins_to_wallet(this_coin_list)
-        print(len(self.customer.wallet.money))
-
-#! Tests whether the length of the backpack list increases when coins are appended
+        self.assertEqual(len(self.customer.wallet.money), 91)
 
 class TestAddCansToBackpack(unittest.TestCase):
     
@@ -52,9 +48,10 @@ class TestAddCansToBackpack(unittest.TestCase):
         self.customer = customer.Customer()
         
     def test_add_cans(self):
+        """Tests whether the length of the backpack list increases when coins are appended"""
         cola = cans.Cola()
         self.customer.add_can_to_backpack(cola)
-        print(len(self.customer.backpack.purchased_cans))
+        self.assertEqual(len(self.customer.backpack.purchased_cans), 1)
         
 
 if __name__ == "__main__":
