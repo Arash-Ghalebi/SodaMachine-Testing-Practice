@@ -52,6 +52,12 @@ class TestGetCoinFromRegister(unittest.TestCase):
         result = self.sodaMachine.get_coin_from_register(coin)
         self.assertEqual(result.name, 'Penny')
         
+    def test_coin_returned_register_other(self):
+        """ Call get_coin_from_register with Other arguments they return None."""
+        coin = 'Other'
+        result = self.sodaMachine.get_coin_from_register(coin)
+        self.assertIsNone(result)
+        
 
 class TestRegisterHasCoin(unittest.TestCase):
     def setUp(self):
@@ -82,6 +88,11 @@ class TestRegisterHasCoin(unittest.TestCase):
         result = self.sodaMachine.register_has_coin(coin)
         self.assertTrue(result)
 
+    def test_register_has_other(self):
+        """ Call register_has_coin with Other to ensure it returns False."""
+        coin = 'Other'
+        result = self.sodaMachine.register_has_coin(coin)
+        self.assertFalse(result)
 
 class TestDetermineChangeValue(unittest.TestCase):
     def setUp(self):

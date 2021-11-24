@@ -30,6 +30,11 @@ class TestGetWalletCoin(unittest.TestCase):
         returned_coin = self.customer.get_wallet_coin("Penny")
         self.assertIsInstance(returned_coin, coins.Penny)
         
+    def test_get_other(self):
+        """Passing in 'Other' string will return None"""
+        returned_coin = self.customer.get_wallet_coin("Other")
+        self.assertIsNone(returned_coin)
+        
 
 class TestAddCoinsToWallet(unittest.TestCase):
     
@@ -41,15 +46,33 @@ class TestAddCoinsToWallet(unittest.TestCase):
         this_coin_list = [coins.Quarter(), coins.Nickel(), coins.Penny()]
         self.customer.add_coins_to_wallet(this_coin_list)
         self.assertEqual(len(self.customer.wallet.money), 91)
+        
+    def test_add_coins_2(self):
+        """Tests whether the length of the coin list increases when coins are appended """
+        this_coin_list = []
+        self.customer.add_coins_to_wallet(this_coin_list)
+        self.assertEqual(len(self.customer.wallet.money), 88)
 
 class TestAddCansToBackpack(unittest.TestCase):
     
     def setUp(self):
         self.customer = customer.Customer()
         
-    def test_add_cans(self):
-        """Tests whether the length of the backpack list increases when coins are appended"""
+    def test_add_cola(self):
+        """Tests whether the length of the backpack list increases when cans are appended"""
         cola = cans.Cola()
+        self.customer.add_can_to_backpack(cola)
+        self.assertEqual(len(self.customer.backpack.purchased_cans), 1)
+        
+    def test_add_orange(self):
+        """Tests whether the length of the backpack list increases when cans are appended"""
+        cola = cans.OrangeSoda()
+        self.customer.add_can_to_backpack(cola)
+        self.assertEqual(len(self.customer.backpack.purchased_cans), 1)
+        
+    def test_add_root_beer(self):
+        """Tests whether the length of the backpack list increases when cans are appended"""
+        cola = cans.RootBeer()
         self.customer.add_can_to_backpack(cola)
         self.assertEqual(len(self.customer.backpack.purchased_cans), 1)
         
